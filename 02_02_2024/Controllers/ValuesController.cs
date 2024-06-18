@@ -7,8 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace waterview.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/")]
     public class ValuesController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
@@ -17,8 +17,15 @@ namespace waterview.Controllers
         {
             _context = context;
         }
-
-        [HttpPost("add-value")]
+        [HttpGet]
+        [Route("get-values")]
+        public IActionResult GetListofValues()
+        {
+            var list = _context.Values.Include(v => v.Station).ToList();
+            return StatusCode(200, new JsonResult(list));
+        }
+        [HttpPost]
+        [Route("add-values")]
         public async Task<IActionResult> AddValue([FromBody] Value value)
         {
             if (!ModelState.IsValid)
