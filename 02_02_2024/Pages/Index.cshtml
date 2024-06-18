@@ -1,0 +1,69 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1>Waterview</h1>
+
+    <table class="review">
+            <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.LatestValues[0].Station)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LatestValues[0].WaterValue)
+            </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LatestValues[0].TimeStamp)
+                </th>
+                <th>
+                    
+                </th>
+            </tr>
+            @foreach (var item in Model.LatestValues)
+            {
+
+                    <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Station.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WaterValue)
+                </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TimeStamp)
+                        </td>
+
+
+                        <td>
+                            @if (item.WaterValue <= item.Station.FloodLevel)
+                            {
+                        <figure title="Low water">
+                                    <img src="~/images/low_w.png" height="24px" width="24px" />
+                                    <figcaption>Low</figcaption>
+                                </figure>
+                                
+                            }
+                            @if (item.WaterValue >= item.Station.DroughtLevel)
+                            {
+                        <figure title="High water">
+                                <img src="~/images/high_w.png" height="24px" width="24px" />
+                                <figcaption>High</figcaption>
+                            </figure>
+                                
+                            }
+                            @if (item.TimeStamp <= DateTime.Now.AddMinutes(-item.Station.TimeOutInMinutes))
+                            {
+                        <figure title="Offline">
+                                <img src="~/images/offline_station.png" height="24px" width="24px" />
+                                <figcaption>Off</figcaption>
+                            </figure>
+                                
+                            }
+                        </td>
+                    </tr>
+            }
+    </table>
+</div>

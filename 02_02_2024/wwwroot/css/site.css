@@ -1,0 +1,102 @@
+html, body, .table {
+    color: #fbf1c7;
+}
+
+html {
+    font-size: 20px;
+    color: #fbf1c7;
+    background-color: #253c2e;
+}
+
+body > header {
+    background-color: #a4d8fe;
+    color: #96974f;
+}
+
+header {
+    background-color: #2582bf;
+}
+
+.navbar-toggler-icon {
+    background-color: #2582bf;
+}
+
+a:visited {
+    color: #a4d8fe;
+}
+
+a:link {
+    color: #a4d8fe;
+}
+a:hover {
+    background-color: #2582bf;
+    color: #fbf1c7;
+}
+
+.review figure {
+    float: right;
+}
+
+figure {
+    padding: 0;
+    margin: 0;
+}
+figcaption {
+    padding: 0;
+    margin: 0 10px;
+    font-size: 0.4em;
+}
+figure img {
+    margin: 0px;
+    padding: 0px;
+}
+
+.form-group {
+    margin-block-start:20px;
+}
+
+.to-right {
+    float: right;
+}
+
+.border-top {
+    margin-top: 20px;
+}
+
+.container {
+    margins: 10px auto 10px auto;
+    max-width: 1024px;
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    background-color: #2582bf;
+    color: #fbf1c7;
+}
+table.review {
+    width: 100%;
+    padding: 0px;
+}
+.review tr {
+    border-bottom: 1px solid #fbf1c7;
+}
+table.review td, table.review tr {
+    height: 50px;
+}
+tr, td {
+    margin: 0px;
+    padding: 0px;
+}
+html {
+    position: relative;
+    min-height: 100%;
+    background-color: #253c2e;
+    background-position: center;
+    background-size: cover;
+    background-image: url("/background.jpg");
+}
+
+body {
+    background:none;
+    margins: 60px;
+}

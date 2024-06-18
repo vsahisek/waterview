@@ -1,0 +1,53 @@
+﻿@page
+@model _02_02_2024.Pages.ValuePages.IndexModel
+
+@{
+    ViewData["Title"] = "Values";
+}
+
+<h1>Values</h1>
+<div class="text-center">
+<form method="get">
+    <div class="form-group">
+        <label for="StationSelect">By Station</label>
+        <select id="StationSelect" asp-for="SelectedStationId" asp-items="@(new SelectList(Model.Stations, "Id", "Name"))" class="form-control">
+            <option value="">All Stations</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Filter</button>
+</form>
+<table class="review">
+        <tr>
+            <th>Station</th>
+            <th>Water Level</th>
+            <th>Timestamp</th>
+            <th>  </th>
+        </tr>
+        @foreach (var item in Model.Values)
+        {
+            <tr>
+                <td>@item.Station.Name</td>
+                <td>@item.WaterValue</td>
+                <td>@item.TimeStamp</td>
+                <td>
+                    @if (item.WaterValue <= item.Station.FloodLevel)
+                    {
+                        <figure title="Low water">
+                            <img src="~/images/low_w.png" height="24px" width="24px" />
+                            <figcaption>Low</figcaption>
+                        </figure>
+
+                    }
+                    @if (item.WaterValue >= item.Station.DroughtLevel)
+                    {
+                        <figure title="High water">
+                            <img src="~/images/high_w.png" height="24px" width="24px" />
+                            <figcaption>High</figcaption>
+                        </figure>
+
+                    }
+                </td>
+            </tr>
+        }
+</table>
+</div>

@@ -1,0 +1,48 @@
+﻿@page
+@model _02_02_2024.Pages.StationPages.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create Station</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Station.Name" class="control-label"></label>
+                <input asp-for="Station.Name" class="form-control" />
+                <span asp-validation-for="Station.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Station.FloodLevel" class="control-label"></label>
+                <input asp-for="Station.FloodLevel" class="form-control" />
+                <span asp-validation-for="Station.FloodLevel" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Station.DroughtLevel" class="control-label"></label>
+                <input asp-for="Station.DroughtLevel" class="form-control" />
+                <span asp-validation-for="Station.DroughtLevel" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Station.TimeOutInMinutes" class="control-label"></label>
+                <input asp-for="Station.TimeOutInMinutes" class="form-control" />
+                <span asp-validation-for="Station.TimeOutInMinutes" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a class="to-right" asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
