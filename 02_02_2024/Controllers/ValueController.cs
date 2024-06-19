@@ -9,11 +9,11 @@ namespace waterview.Controllers
 {
     [ApiController]
     [Route("api/")]
-    public class ValuesController : ControllerBase
+    public class ValueController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
 
-        public ValuesController(ApplicationDbContext context)
+        public ValueController(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -33,19 +33,17 @@ namespace waterview.Controllers
                 return BadRequest(ModelState);
             }
 
-            // Zkontrolujte, zda stanice existuje
             var station = await _context.Stations.FindAsync(value.StationId);
             if (station == null)
             {
                 return NotFound($"Station with ID {value.StationId} not found.");
             }
 
-            value.TimeStamp = DateTime.Now; // Nastavte aktuální čas jako časové razítko
+            value.TimeStamp = DateTime.Now; 
 
             _context.Values.Add(value);
             await _context.SaveChangesAsync();
 
-            // Načtěte hodnotu znovu se zahrnutím stanice
             var valueWithStation = await _context.Values.Include(v => v.Station).FirstOrDefaultAsync(v => v.Id == value.Id);
             _context.SaveChanges();
             return Ok(valueWithStation);
